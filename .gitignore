@@ -1,0 +1,17 @@
+*~
+*.elc
+.emacs.desktop
+.mc-lists.el
+bookmarks
+custom.el
+elpa
+eshell
+games
+ido.last
+projectile-bookmarks.eld
+projectile.cache
+recentf
+tangotango-theme.el
+tramp
+transient
+var
