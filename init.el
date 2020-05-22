@@ -95,7 +95,7 @@
 
     ;; Use a default ruby version of 2.5.8. Make sure this happens _after_ the
     ;; exec-path-from-shell initialization so that the chruby part of the path
-    ;; comes _before_ the path added by exec-path-from-shell.
+    ;; comes _after_ the path added by exec-path-from-shell.
     (chruby "2.5.8")))
 
 ;; Automatically add matching delimiters, e.g. quotes, parentheses.
