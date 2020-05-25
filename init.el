@@ -67,6 +67,9 @@
 ;; Delete trailing whitespace before saving.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Put the cursor in the *Help* window when it opens.
+(setq help-window-select t)
+
 
 ;;; Packages
 
