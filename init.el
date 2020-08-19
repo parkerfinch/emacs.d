@@ -220,6 +220,10 @@
   :config
   (global-set-key "\C-s" 'swiper))
 
+(use-package js
+  :config
+  (setq js-indent-level 2))
+
 
 ;;; Project Management
 
