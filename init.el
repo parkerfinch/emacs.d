@@ -229,6 +229,61 @@
   :config
   (setq js-indent-level 2))
 
+;; Configuration for org-mode.
+;; Inspired by doc.norang.ca/org-mode.html.
+(use-package org
+  :config
+  (setq org-directory "~/org/")
+  (setq org-default-notes-file (concat org-directory "refile.org"))
+
+  ;; The files/directories that should contribute to the agenda.
+  (setq org-agenda-files (quote ("~/org/panorama"
+                                 "~/org/personal")))
+
+  (global-set-key (kbd "C-c a") 'org-agenda)
+
+  ;; Task states and flow.
+  (setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        (sequence "BLOCKED(b@/!)")
+        (sequence "|" "CANCELED(c)")))
+
+  (setq org-todo-state-tags-triggers
+        (quote (("CANCELED" ("CANCELED" . t))
+                ("BLOCKED" ("BLOCKED" . t))
+                ("TODO" ("BLOCKED") ("CANCELED"))
+                ("NEXT" ("BLOCKED") ("CANCELED"))
+                ("DONE" ("BLOCKED") ("CANCELED")))))
+
+  ;; Capture templates
+  (setq org-capture-templates
+        (quote (("t" "todo" entry (file "")
+                 "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+                ("m" "Meeting" entry (file "")
+                 "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+                ("r" "Reading" entry (file "")
+                 "* READING %? :READING:\n%U" :clock-in t :clock-resume t))))
+
+  ;; Refiling config
+  ;; Targets include this file and any file contributing to the agenda - up to 9 levels deep
+  (setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                   (org-agenda-files :maxlevel . 9))))
+
+  ;; Use full outline paths for refile targets
+  (setq org-refile-use-outline-path t)
+
+  (global-set-key (kbd "<f11>") 'org-clock-goto)
+  (global-set-key (kbd "C-<f11>") 'org-clock-in)
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (global-set-key (kbd "C-c b") 'org-switchb))
+
+(use-package org-jira
+  :ensure-system-package gpg
+  :config
+  (setq jiralib-url "https://panoramaed.atlassian.net")
+  (setq org-jira-working-dir "~/org/jira"))
+
 
 ;;; Project Management
 
