@@ -124,9 +124,9 @@
   ;; Enable the fill column indicator everywhere.
   (add-hook 'after-change-major-mode-hook 'fci-mode))
 
-;; A nice theme that I enjoy.
-(use-package tangotango-theme
-  :init (load-theme 'tangotango t))
+;; A nice low-contrast theme. Widely used and well supported.
+(use-package zenburn-theme
+  :init (load-theme 'zenburn t))
 
 (use-package magit
   :bind (("C-x g" . magit-status))
