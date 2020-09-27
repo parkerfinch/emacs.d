@@ -134,6 +134,9 @@
   (setq git-commit-summary-max-length 50)
   (add-hook 'git-commit-setup-hook (lambda () (set-fill-column 72))))
 
+(use-package forge
+  :after magit)
+
 (use-package docker
   :bind ("C-c d" . docker))
 
