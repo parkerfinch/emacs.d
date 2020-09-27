@@ -73,7 +73,7 @@
 ;; Set correct pinentry mode. This allows the gpg key passphrase to be entered
 ;; in the minibuffer.  See:
 ;; https://colinxy.github.io/software-installation/2016/09/24/emacs25-easypg-issue.html
-(setq epa-pinentry-mode 'loopback)
+(setq epg-pinentry-mode 'loopback)
 
 
 ;;; Packages
