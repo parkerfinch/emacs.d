@@ -132,6 +132,7 @@
   :bind (("C-x g" . magit-status))
   :config
   (setq git-commit-summary-max-length 50)
+  (setq magit-log-section-commit-count 20) ;; Increase from default of 10
   (add-hook 'git-commit-setup-hook (lambda () (set-fill-column 72))))
 
 (use-package forge
