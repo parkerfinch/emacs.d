@@ -132,6 +132,11 @@
 (use-package zenburn-theme
   :init (load-theme 'zenburn t))
 
+(use-package dired-sidebar
+  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar))
+
 (use-package magit
   :bind (("C-x g" . magit-status))
   :config
