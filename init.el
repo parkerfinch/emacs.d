@@ -229,7 +229,10 @@
 
 (use-package swiper
   :config
-  (global-set-key "\C-s" 'swiper))
+  (global-set-key "\C-s" 'swiper)
+  (global-set-key "\C-r" 'swiper)
+  (global-set-key "\C-c s" 'swiper-isearch)
+  (global-set-key "\C-c r" 'swiper-isearch))
 
 (use-package js
   :config
