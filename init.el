@@ -95,16 +95,18 @@
 ;; installed.
 (use-package use-package-ensure-system-package)
 
+(use-package chruby)
+
 ;; Load the PATH environment variable on non-windows systems.
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)
 
-    ;; Use a default ruby version of 2.5.8. Make sure this happens _after_ the
+    ;; Use a default ruby version of 3.0.0. Make sure this happens _after_ the
     ;; exec-path-from-shell initialization so that the chruby part of the path
     ;; comes _after_ the path added by exec-path-from-shell.
-    (chruby "2.5.8")))
+    (chruby "3.0.0")))
 
 ;; Automatically add matching delimiters, e.g. quotes, parentheses.
 (use-package elec-pair
@@ -140,8 +142,6 @@
 
 (use-package docker
   :bind ("C-c d" . docker))
-
-;; (use-package chruby)
 
 (use-package ruby-mode
   :ensure-system-package
