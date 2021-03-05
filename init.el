@@ -290,6 +290,12 @@
   (setq jiralib-url "https://panoramaed.atlassian.net")
   (setq org-jira-working-dir "~/org/jira"))
 
+(use-package tex-site
+  :ensure auctex
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t))
+
 
 ;;; Project Management
 
