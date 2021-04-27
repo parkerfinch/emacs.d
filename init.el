@@ -323,6 +323,23 @@
 
 
 
+;;; Zoom Accessibility
+
+;; Put the zoom room links in their own file outside version control so that I
+;; don't publish private links.
+(load-file "~/.zoomrooms.el")
+
+(defun zoom-open ()
+  "Open a selected zoom room via the web browser."
+  (interactive)
+  (browse-url
+   (cdr (assoc
+         (completing-read "Choose a room: " zoom/rooms nil t)
+         zoom/rooms))))
+
+(global-set-key (kbd "C-x C-z") 'zoom-open)
+
+
 ;;; Customization
 
 ;; Since customization is generated automatically, store it in a separate
