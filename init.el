@@ -142,6 +142,7 @@
   :config
   (setq git-commit-summary-max-length 50)
   (setq magit-log-section-commit-count 20) ;; Increase from default of 10
+  (setq magit-revision-insert-related-refs nil) ;; Don't show related refs
   (add-hook 'git-commit-setup-hook (lambda () (set-fill-column 72))))
 
 (use-package forge
