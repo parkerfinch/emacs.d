@@ -149,6 +149,10 @@
 (use-package forge
   :after magit)
 
+(use-package git-link
+  :bind (("C-c g l" . git-link))
+  :config (setq git-link-use-commit t))
+
 (use-package docker
   :bind ("C-c d" . docker))
 
