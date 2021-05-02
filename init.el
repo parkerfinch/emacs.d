@@ -138,7 +138,8 @@
   :commands (dired-sidebar-toggle-sidebar))
 
 (use-package magit
-  :bind (("C-x g" . magit-status))
+  :bind (("C-x g" . magit-status)
+         ("C-c g b" . magit-log-buffer-file))
   :config
   (setq git-commit-summary-max-length 50)
   (setq magit-log-section-commit-count 20) ;; Increase from default of 10
