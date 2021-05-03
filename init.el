@@ -320,7 +320,13 @@
 ;; I find this quicker than trying to navigate the JIRA UI.
 (defun browse-ticket (ticket-id)
   "Open TICKET-ID in a web browser."
-  (interactive "sTicket id: ")
+  (interactive
+   (list
+    (let ((default-ticket (thing-at-point 'sexp)))
+      (if (string-match-p "^[A-Z]+-[0-9]+$" default-ticket)
+          (read-string (format "Ticket ID (Default: %s): " default-ticket)
+                       nil nil default-ticket)
+        (read-string "Ticket ID: ")))))
   (browse-url
    (concat
     "https://panoramaed.atlassian.net/browse/"
