@@ -343,12 +343,13 @@
 (load-file "~/.zoomrooms.el")
 
 (defun zoom-open ()
-  "Open a selected zoom room via the web browser."
+  "Open a selected zoom room."
   (interactive)
-  (browse-url
-   (cdr (assoc
-         (completing-read "Choose a room: " zoom/rooms nil t)
-         zoom/rooms))))
+  (shell-command
+   (format "open -a /Applications/zoom.us.app %s"
+           (cdr (assoc
+                 (completing-read "Choose a room: " zoom/rooms nil t)
+                 zoom/rooms)))))
 
 (global-set-key (kbd "C-x C-z") 'zoom-open)
 
