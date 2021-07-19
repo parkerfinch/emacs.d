@@ -119,6 +119,24 @@
   :config
   (show-paren-mode +1))
 
+(use-package dumb-jump
+  :config
+  ;; Remove tags backend, since I don't use it.
+  (setq xref-backend-functions (remq 'etags--xref-backend xref-backend-functions))
+
+  ;; Add a dumb-jump backend to xref. This allows for using regular xref
+  ;; functions (e.g. M-.) for jumping around.
+  (add-to-list 'xref-backend-functions #'dumb-jump-xref-activate t)
+
+  ;; Force dumb-jump to use ripgrep because the default searcher, git-grep, does
+  ;; not work when recurse-submodules is enabled. I have, in my ~/.gitconfig,
+  ;; submodules set to recurse. So the search fails. Using rg instead allows
+  ;; dumb-jump to function, but it would be good to get to the root cause of
+  ;; this issue and hopefully fix it, since git-grep should be faster.
+  (setq dumb-jump-force-searcher 'rg)
+
+
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read))
 (use-package fill-column-indicator
   :config
   ;; Panorama usually uses 80 character line limits. This makes that
@@ -217,6 +235,9 @@
 
 (use-package ag
   :ensure-system-package ag)
+
+(use-package rg
+  :ensure-system-package (rg . ripgrep))
 
 (use-package projectile
   :init
