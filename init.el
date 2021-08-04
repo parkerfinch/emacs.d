@@ -255,6 +255,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (use-package projectile
   :init
   (setq projectile-completion-system 'ivy)
+  (setq projectile-globally-ignored-file-suffixes
+        '(".json" ".min.js" ".log"))
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (projectile-mode +1))
