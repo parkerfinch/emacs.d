@@ -344,7 +344,7 @@
   (interactive
    (list
     (let ((default-ticket (thing-at-point 'sexp)))
-      (if (string-match-p "^[A-Z]+-[0-9]+$" default-ticket)
+      (if (and (stringp default-ticket) (string-match-p "^[A-Z]+-[0-9]+$" default-ticket))
           (read-string (format "Ticket ID (Default: %s): " default-ticket)
                        nil nil default-ticket)
         (read-string "Ticket ID: ")))))
