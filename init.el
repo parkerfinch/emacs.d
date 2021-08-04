@@ -188,6 +188,9 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (use-package docker
   :bind ("C-c d" . docker))
 
+(use-package rubocop
+  :bind (("C-c r a" . rubocop-autocorrect-current-file)))
+
 (use-package ruby-mode
   :mode "\\(?:\\.rb\\|\\.irbrc\\|ru\\|rake\\|gemspec\\|/\\(?:Gem\\|Rake\\|Guard\\)file\\)\\'"
   :ensure-system-package
