@@ -332,6 +332,13 @@
   (setq TeX-auto-save t)
   (setq TeX-parse-self t))
 
+(use-package plantuml-mode
+  :ensure-system-package plantuml
+  :mode "\\.\\(plantuml\\|pum\\|plu\\)\\'"
+  :config
+  (setq plantuml-default-exec-mode 'executable)
+  (setq plantuml-executable-path (executable-find "plantuml")))
+
 
 ;;; Project Management
 
