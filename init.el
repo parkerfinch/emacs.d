@@ -212,6 +212,19 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   ;; Activate rubocop mode.
   (add-hook 'ruby-mode-hook 'rubocop-mode))
 
+(use-package which-key
+  :init
+  (which-key-mode))
+
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c p")
+  (setq lsp-enable-snippet nil)
+  (setq lsp-headerline-breadcrumb-enable nil)
+  :hook ((ruby-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
 (use-package rspec-mode
   :config
   ;; At Panorama local development, and specs, are done in docker.
