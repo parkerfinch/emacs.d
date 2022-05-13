@@ -400,18 +400,20 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 
 ;; Put the zoom room links in their own file outside version control so that I
 ;; don't publish private links.
-(load-file "~/.zoomrooms.el")
+(let ((zoom-rooms-file "~/.zoomrooms.el"))
+  (if (file-exists-p zoom-rooms-file)
+      (progn
+        (load-file zoom-rooms-file)
+        (defun zoom-open ()
+          "Open a selected zoom room."
+          (interactive)
+          (shell-command
+           (format "open -a /Applications/zoom.us.app %s"
+                   (cdr (assoc
+                         (completing-read "Choose a room: " zoom/rooms nil t)
+                         zoom/rooms)))))
 
-(defun zoom-open ()
-  "Open a selected zoom room."
-  (interactive)
-  (shell-command
-   (format "open -a /Applications/zoom.us.app %s"
-           (cdr (assoc
-                 (completing-read "Choose a room: " zoom/rooms nil t)
-                 zoom/rooms)))))
-
-(global-set-key (kbd "C-x C-z") 'zoom-open)
+        (global-set-key (kbd "C-x C-z") 'zoom-open))))
 
 
 ;;; Customization
