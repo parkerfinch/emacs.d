@@ -79,8 +79,17 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 
 (global-display-line-numbers-mode)
 
-;; Delete trailing whitespace before saving.
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; Delete trailing whitespace before saving, unless the file is a
+;; schema.rb. This exception is to handle the Sequel (ruby gem) behavior of
+;; leaving trailing whitespace in the schema after it is dumped to disk. I
+;; shouldn't need to open or edit the file manually, but sometimes I look at and
+;; accidentally save, and this prevents a bit of a headache there.
+(add-hook
+ 'before-save-hook
+ (lambda ()
+   "Delete trailing whitespace unless it's in a schema."
+   (unless (s-ends-with? "schema.rb" (buffer-file-name))
+       (delete-trailing-whitespace))))
 
 ;; Put the cursor in the *Help* window when it opens.
 (setq help-window-select t)
