@@ -182,7 +182,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :after magit)
 
 (use-package git-link
-  :bind (("C-c g l" . git-link))
+  :bind (("C-c g l" . git-link)
+         ("C-c g c" . git-link-commit))
   :config (setq git-link-use-commit t))
 
 (use-package docker
