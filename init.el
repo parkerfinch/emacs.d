@@ -94,6 +94,9 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 ;; Put the cursor in the *Help* window when it opens.
 (setq help-window-select t)
 
+;; Allow other-window to go back a window by using shift-o
+(global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1)))
+
 ;; Set correct pinentry mode. This allows the gpg key passphrase to be entered
 ;; in the minibuffer.  See:
 ;; https://colinxy.github.io/software-installation/2016/09/24/emacs25-easypg-issue.html
