@@ -201,6 +201,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (use-package docker
   :bind ("C-c d" . docker))
 
+(use-package dockerfile-mode)
+
 (use-package rubocop
   :bind (("C-c r a" . rubocop-autocorrect-current-file)))
 
