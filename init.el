@@ -236,7 +236,11 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (setq lsp-keymap-prefix "C-c p")
   (setq lsp-enable-snippet nil)
   (setq lsp-headerline-breadcrumb-enable nil)
+  :ensure-system-package
+  ((terraform-ls . "brew install hashicorp/tap/terraform-ls"))
+
   :hook ((ruby-mode . lsp)
+         (terraform-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
@@ -268,6 +272,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
     :front "^```ruby[\n\r]+"
     :back "^```$")))
   (mmm-add-mode-ext-class 'markdown-mode nil 'markdown-ruby))
+
+(use-package terraform-mode)
 
 (use-package multiple-cursors
   :bind (("C-M-c"   . 'mc/edit-lines)
