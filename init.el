@@ -130,10 +130,10 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)
 
-    ;; Use a default ruby version of 3.0.0. Make sure this happens _after_ the
+    ;; Use a default ruby version of 3.1.2. Make sure this happens _after_ the
     ;; exec-path-from-shell initialization so that the chruby part of the path
     ;; comes _after_ the path added by exec-path-from-shell.
-    (chruby "3.0.0")))
+    (chruby "3.1.2")))
 
 ;; Automatically add matching delimiters, e.g. quotes, parentheses.
 (use-package elec-pair
