@@ -236,6 +236,11 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (setq lsp-keymap-prefix "C-c p")
   (setq lsp-enable-snippet nil)
   (setq lsp-headerline-breadcrumb-enable nil)
+
+  ;; Performance tweaks, see https://emacs-lsp.github.io/lsp-mode/page/performance/
+  (setq read-process-output-max (* 1024 1024)) ;; 1MiB
+  (setq gc-cons-threshold 100000000)
+
   :ensure-system-package
   ((terraform-ls . "brew install hashicorp/tap/terraform-ls"))
 
