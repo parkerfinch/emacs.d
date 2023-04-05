@@ -203,6 +203,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 
 (use-package dockerfile-mode)
 
+(use-package yaml-mode)
+
 (use-package rubocop
   :bind (("C-c r a" . rubocop-autocorrect-current-file)))
 
