@@ -251,6 +251,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
+(use-package lsp-ui)
+
 (use-package rspec-mode
   :config
   ;; At Panorama local development, and specs, are done in docker.
