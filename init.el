@@ -264,6 +264,15 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (use-package flycheck
   :init (global-flycheck-mode))
 
+(use-package markdown-mode
+  :ensure t
+  :ensure-system-package pandoc
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "pandoc"))
+
+(use-package pandoc-mode
+  :ensure-system-package pandoc)
+
 ;; Multiple Major Modes (MMM) is used when a buffer has multiple different types
 ;; of code. It allows, for example, using ruby mode in part of a buffer and
 ;; markdown in other parts.
