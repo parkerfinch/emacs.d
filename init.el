@@ -229,6 +229,22 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   ;; Activate rubocop mode.
   (add-hook 'ruby-mode-hook 'rubocop-mode))
 
+(use-package yard-mode
+  :after ruby-mode
+  :hook ruby-mode
+  :init
+  (add-hook
+   'yard-mode-hook
+   (lambda ()
+     (make-local-variable 'paragraph-start)
+     (setq paragraph-start
+           (if yard-mode
+               (concat "#+[ ]*@"
+                       yard-tags-re
+                       ".*\\|"
+                       (default-value 'paragraph-start))
+             (default-value 'paragraph-start))))))
+
 (use-package which-key
   :init
   (which-key-mode))
