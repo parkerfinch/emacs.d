@@ -239,7 +239,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
      (make-local-variable 'paragraph-start)
      (setq paragraph-start
            (if yard-mode
-               (concat "#+[ ]*@"
+               (concat " *#+[ ]*@"
                        yard-tags-re
                        ".*\\|"
                        (default-value 'paragraph-start))
