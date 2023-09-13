@@ -407,6 +407,33 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c b") 'org-switchb))
 
+;; Based on https://github.com/org-roam/org-roam#configuration
+(use-package org-roam
+  :ensure t
+  :ensure-system-package graphviz ;; Required for visualizing graph of nodes
+  :custom
+  (org-roam-directory (file-truename "~/notes/"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  ;; (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+
+  (org-roam-db-autosync-mode)
+
+  ;; Not yet using
+  ;; https://www.orgroam.com/manual.html#org_002droam_002dprotocol, since I'm
+  ;; not sure what the use case is. But uncomment this if it would be helpful to
+  ;; capture things from other applications!
+  ;;
+  ;;(require 'org-roam-protocol)
+  )
+
 (use-package org-jira
   :ensure-system-package gpg
   :config
