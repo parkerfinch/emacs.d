@@ -315,37 +315,33 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
          ("C-<"     . 'mc/mark-previous-like-this)
          ("C-C C-<" . 'mc/mark-all-like-this)))
 
-;; Fuzzy search result ordering for ivy (?).
-(use-package flx)
-
-(use-package ag
-  :ensure-system-package ag)
-
 (use-package rg
   :ensure-system-package (rg . ripgrep))
 
-(use-package projectile
+;; Completion framework in minibuffer.
+(use-package vertico
+  :ensure t
   :init
-  (setq projectile-completion-system 'ivy)
+  (vertico-mode))
+
+;; Fuzzy matching and scoring
+(use-package orderless
+  :ensure t
+  :config
+  ;; Use flex matching style that I'm used to, no need to separate matches.
+  (push 'orderless-flex orderless-matching-styles)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package projectile
+  :ensure-system-package fd
+  :init
   (setq projectile-globally-ignored-file-suffixes
         '(".json" ".min.js" ".log"))
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (projectile-mode +1))
-
-(use-package ivy
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-re-builders-alist
-        '((swiper . ivy--regex-plus)
-          (t . ivy--regex-fuzzy))))
-
-(use-package counsel
-  :config
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file))
 
 (use-package swiper
   :config
