@@ -321,7 +321,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 ;; Completion framework in minibuffer.
 (use-package vertico
   :ensure t
-  :init
+  :config
   (vertico-mode))
 
 ;; Fuzzy matching and scoring
