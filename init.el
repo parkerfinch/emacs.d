@@ -63,21 +63,8 @@
 ;; Don't use tab literals, use spaces instead.
 (setq-default indent-tabs-mode nil)
 
-;; Show line numbers for non-image files.
-;; Approach taken from https://www.emacswiki.org/emacs/LineNumbers
-(defcustom display-line-numbers-exempt-modes
-  '(image-mode)
-  "Major modes on which to disable line numbers."
-  :group 'display-line-numbers
-  :type 'list)
-
-(defun display-line-numbers--turn-on ()
-  "Turn on line numbers except for certain major modes.
-Exempt major modes are defined in `display-line-numbers-exempt-modes'."
-  (unless (member major-mode display-line-numbers-exempt-modes)
-    (display-line-numbers-mode)))
-
-(global-display-line-numbers-mode)
+;; Show line numbers in programming modes.
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;; Delete trailing whitespace before saving, unless the file is a
 ;; schema.rb. This exception is to handle the Sequel (ruby gem) behavior of
