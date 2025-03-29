@@ -447,10 +447,11 @@
   "Open TICKET-ID in a web browser."
   (interactive
    (list
-    (let ((default-ticket (thing-at-point 'sexp)))
-      (if (and (stringp default-ticket) (string-match-p "^[A-Z]+-[0-9]+$" default-ticket))
+    (let ((str (thing-at-point 'sexp)))
+      (if (and (stringp str) (string-match "^\\([A-Z0-9]+-[0-9]+\\)" str))
+          (let ((default-ticket (substring-no-properties str (match-beginning 0) (match-end 0))))
           (read-string (format "Ticket ID (Default: %s): " default-ticket)
-                       nil nil default-ticket)
+                       nil nil default-ticket))
         (read-string "Ticket ID: ")))))
   (browse-url
    (concat
